@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>README.md</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <h1 id="readmemd"><a href="http://README.md">README.md</a></h1>
+<p>Hendrik Schäfer</p>
+<p>Entwicklung eines App-gesteuerten Improvisationstheaters</p>
+<h2 id="struktur">Struktur</h2>
+<table>
+<thead>
+<tr>
+<th>Ort</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/backend</code></td>
+<td>Django Projekt &amp; Backend Configuration</td>
+</tr>
+<tr>
+<td><code>/backend/api</code></td>
+<td>Django App (<code>/api</code>)</td>
+</tr>
+<tr>
+<td><code>/src</code></td>
+<td>Vue App .</td>
+</tr>
+<tr>
+<td><code>/src/main.js</code></td>
+<td>JS Entry Point</td>
+</tr>
+<tr>
+<td><code>/public/index.html</code></td>
+<td>Html Entry Point (<code>/</code>)</td>
+</tr>
+<tr>
+<td><code>/public/static</code></td>
+<td>Static</td>
+</tr>
+<tr>
+<td><code>/dist/</code></td>
+<td>generierte static files mit (<code>yarn build</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vorraussetzungen">Vorraussetzungen</h2>
+<ul>
+<li>yarn</li>
+<li>pipenv</li>
+<li>python3</li>
+<li>redis-server</li>
+</ul>
+<h2 id="nach-setup">Nach Setup</h2>
+<p>Die Anwendug startet unter <a href="http://192.168.178.22">http://192.168.178.22</a>::8080/ mit einer leeren Datenbank. Zum Testen folgende Reihenfolge ausführen:</p>
+<ol>
+<li>Als Spielleiter registrieren und ein Spiel erstellen, dann ausloggen</li>
+<li>Als Schauspieler registrieren und dem Spiel beitreten, dann ausloggen</li>
+<li>Als Zuschauer dem Spiel beitreten und Aufgabe verfassen</li>
+<li>In einem anderen Browser, oder private Session oder anderem Gerät als Schauspieler einloggen</li>
+<li>In einem anderen Browser, oder private Session oder anderem Gerät als Spielleiter einloggen und Aufgabe abspielen</li>
+</ol>
+<h1 id="automatisches-setup-und-starten-des-lokalen-servers-vorraussetzungen-erf%c3%bcllt">Automatisches Setup und starten des Lokalen Servers (Vorraussetzungen erfüllt?)</h1>
+<pre><code><div>$ bash setuprun.sh
+</div></code></pre>
+<h1 id="manuelles-setup-und-starten-des-lokalen-servers-vorraussetzungen-erf%c3%bcllt">Manuelles Setup und starten des Lokalen Servers (Vorraussetzungen erfüllt?)</h1>
+<pre><code><div>$ yarn install
+$ pipenv install --dev &amp;&amp; pipenv shell
+$ python manage.py migrate
+</div></code></pre>
+<h2 id="entwicklungs-server-lokales-netzwerk">Entwicklungs Server Lokales Netzwerk</h2>
+<p>Erst:</p>
+<pre><code><div>$ redi-server //protected mode ausgeschaltet? siehe unten
+</div></code></pre>
+<p>dann: Terminal Tab selber Ordner</p>
+<pre><code><div>$ python manage.py runserver 192.168.178.22:8000
+</div></code></pre>
+<p>dann neuer Terminal Tab selber Ordner</p>
+<pre><code><div>$ yarn serve
+
+</div></code></pre>
+<p>Die Anwendung wird unter <a href="http://192.168.178.22:8080:/"><code>192.168.178.22::8080</code></a> und die Django Api unter <a href="http://192.168.178.22:8000:/"><code>192.168.178.22::8000</code></a>.</p>
+<p>In den Dateien /vue.config.js und /src/store/game /und backend/settings/dev.py können Netzwerkeinstellungen verändert werden werden</p>
+<h2 id="redis---protected-mode">Redis - Protected mode?</h2>
+<p>wenn der proteced mode an ist, währen der redis-server läuft folgedes eingeben:</p>
+<pre><code><div>redis-cli
+INFO server
+
+CONFIG SET protected-mode no
+</div></code></pre>
+<h1 id=""></h1>
+<h2 id="probleme">Probleme</h2>
+<p>Bei Problemen die Prozesse suchen und beenden und neu versuchen</p>
+<pre><code><div>ps aux | grep python
+ps aux | grep redis
+ps aux | grep yarn
+kill -9 ...
+</div></code></pre>
+
+    </body>
+    </html>

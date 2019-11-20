@@ -1,0 +1,25 @@
+{
+  "name": "ImproApp",
+  "description": "",
+  "keywords": ["django", "vue", "vuejs", "django rest framework"],
+  "env": {
+    "DJANGO_SETTINGS_MODULE": {
+      "description": "Set Django Settings to Production",
+      "value": "backend.settings.prod"
+    }
+  },
+  "engines": {
+    "yarn": "1.4.0",
+    "npm": "6.2.0"
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [{
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
